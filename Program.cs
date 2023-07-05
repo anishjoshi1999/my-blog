@@ -1,7 +1,15 @@
+using blog.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+//Inject DbContext into our app using DI
+builder.Services.AddDbContext<BlogDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BlogDbConnectionString"));
+});
 
 var app = builder.Build();
 
