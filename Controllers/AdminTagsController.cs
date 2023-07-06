@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using blog.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace blog.Controllers
 {
@@ -9,6 +10,16 @@ namespace blog.Controllers
         public IActionResult Add()
         {
             return View();
+        }
+        [HttpPost]
+        [ActionName("Add")]
+        public IActionResult SubmitTag(AddTagRequest addTagRequest)
+        {
+            //var name = Request.Form["name"];
+            //var displayName = Request.Form["displayName"];
+            var name = addTagRequest.Name;
+            var displayName = addTagRequest.DisplayName;
+            return View("Add");
         }
     }
 }
